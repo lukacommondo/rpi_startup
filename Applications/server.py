@@ -1,4 +1,7 @@
-
+sys.path.append("/home/pi/Modules")
+'''
+Dodavanje foldera sa modulima u python path
+'''
 import socket
 import time
 from dht_senzor import DHT_22
