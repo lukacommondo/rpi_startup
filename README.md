@@ -29,7 +29,7 @@ Contains modules for the above mentioned sensors. Can be ran idependently or imp
 
 **Note:**
 
-In addition its neccessary to download the following on the RPi:
+In addition its neccessary to prepare several settings/modules on the RPi:
 
 ```bash
 sudo apt-get update
@@ -56,10 +56,6 @@ Afterwards reboot the device.
 
 Contains practical examples which use imported libraries from the Modules folder.
 
-**Napomena:**  
-
-When asked to input pins to whom the sensors are connected makes sure to follow the GPIO.BCM logic, if another logic is used on the pinout connection diagram change the code accordingly. There could be a difference regarding GPIO.BCM pins from model to model, check the following [link](https://www.raspberrypi-spy.co.uk/2012/09/checking-your-raspberry-pi-board-version/) for more information.
-
 
 #### Content:
 
@@ -70,6 +66,8 @@ When asked to input pins to whom the sensors are connected makes sure to follow 
 
 
 **Note:**
+
+When asked to input pins to whom the sensors are connected makes sure to follow the GPIO.BCM logic, if another logic is used on the pinout connection diagram change the code accordingly. There could be a difference regarding GPIO.BCM pins from model to model, check the following [link](https://www.raspberrypi-spy.co.uk/2012/09/checking-your-raspberry-pi-board-version/) for more information.
 
 Whilst importing modules the following was used:
 
