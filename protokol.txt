@@ -1,0 +1,19 @@
+Protokol spajanja 2 RPi-ja
+
+1. Klasična konekcija preko UART-a, Tx/Rx i viceversa, te spajanje common grounda radi logičkih razina u naponima.
+
+2. Korištenje GPIO pinova gdje se na jednom uređaju pin postavi na input koji je povezan sa pinom postavljenim kao output na drugom uređaju. Spojen i common ground. 
+
+Dodatno - Pametno bi bilo povezati sa npr. 1k-10k otpornikom između kako ne bi došlo do oštećivanja uređaja u slučaju da se oba pina postave na output
+ili prilikom boot-upa (ili inicijalizacije)
+
+Nejasnoća - Također output radi na principu da se mijenjaju naponske razine između HIGH/LOW što generalno u serijskoj komunikaciji npr. kod UART-a uz zadani baud rate služi za prijenos informacija. 
+Pošto se ne koristi UART koji rješava čitanje i slanje paketa treba možda koristiti sockets modul (ili nešto slično?) kojim bi se na neki način encodirali podaci (npr. neki string) kojeg bi kasnije dekodirali na drugom uređaju? Odnosno kako bi se željeni podaci za prijenos pretvorili u bitove i slali kao uputa na HIGH/LOW logiku?
+
+3. I2C konekcija ne bi trebal biti moguća jer je bazirana na master/slave odnosu a I2C pinovi na RPi-ju su dizajnirani da se ponašaju samo kao master.
+
+4. SPI konekcija bi se ponašala slično kao I2C, problem se javlja što je RPi dizajniran da se ponašao kao master, u slučaju povezivanja 2 mastera svaki ima svoj clock signal i ne bi se ušli u sync te ne bi bilo prijenosa podataka. 
+
+Napomena za I2C i SPI - potencijalno rješenje je bitbanging, npr. bitbangani SPI slave (ali po dostupnoj literaturi bi komunikacija bila spora)
+
+Najjednostavnije rješenje je 1., dok 2. koristi slične principe samo što se ne bi koristili prebuilt pinovi za UART.
