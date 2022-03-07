@@ -3,6 +3,7 @@ import time
 import argparse
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
 parser = argparse.ArgumentParser(description="Set TX and RX pin for serial comunication protocol")
 parser.add_argument("tx_pin", metavar="tx_pin", type=int, help="Input pin used for transfering data")
