@@ -84,3 +84,21 @@ Another possible solution was to use:
 sys.path.insert(1, "home/pi/Modules")
 ```
 
+### Applications:
+
+Contrains a server/slave architecture based network application which established communication either via TPC/IP protocol or UDP/IP protocol.  The server is a daemon application which waits for the client application input before replying, one of the capabilities is sending temperature and humidity readings from a DHT21 sensor.
+
+The scripts have 3 obligatory arguments - IP of the host, Port, DHT pin;  and 2 exclusive arguments: TCP or UDP protocol. Run the scripts with:
+
+```bash
+sudo python3 server.py "host IP" "port" "dht pin" "tcp or udp"
+```
+
+### Serial Protocol:
+
+Enables serial data transfer between 2 Raspberry Pi's (Model B+ was used for both devices), over GPIO pins without integrated hardware support. For a full duplex communication 4 physical wired are needed: Tx, Rx, Clock and Ground.
+
+The algorithm is shown below and utilizes a mutual 'Clock' connection which is used to synchronize baud rates on the transfering and receiving sides .
+
+![](Pictures/Algorithm.png)
+
