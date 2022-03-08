@@ -26,18 +26,35 @@ GPIO.setup(clock_pin, GPIO.OUT)
 
 
 def string2bits(word=''):
+	'''
+	Input: String or multiple strings, space included
+	Output: List of bytes as elements, zfill adds aditional 0's for easier iteration
+	'''
 	return [bin(ord(element))[2:].zfill(8) for element in word]
 
 
 def original_form(rx_buffer):
+	'''
+	Input: List in which rx_buffer separates received bytes into singe bits for transfer
+	Output: List of bits concatenated into bytes (8-bits), into their original form
+	'''
 	return [''.join(rx_buffer[i:i + 8]) for i in range(0, len(rx_buffer), 8)]
 
 
 def bit2string(ordered_rx_buffer):
+	'''
+	Input: List of received bytes prepared by original_form function
+	Output: Characters readable by humans (ascii, utf-8) 
+	'''
 	return ''.join([chr(int(letter,2)) for letter in ordered_rx_buffer])
 
 
 def transfer_data(tx_buffer):
+	'''
+	Input: List of bytes 
+	Output: Activates 'clock signal' which synchronizes baud rates on transfering and receiving sides
+			Generates 'High' and 'Low' values in respect to bits which are interpreted on the receive end
+	'''
 
 	while len(tx_buffer) > 0: 
 		
@@ -81,6 +98,10 @@ def transfer_data(tx_buffer):
 
 
 def receive_data():
+	'''
+	Input: 'High' or 'Low' values which the function samples and appends relative values to the rx_buffer
+	Output: List of singular bits as elements
+	'''
 
 	rx_buffer = []
 
@@ -122,10 +143,3 @@ def receive_data():
 
 	except KeyboardInterrupt():
 		print("Closed!")
-
-
-
-
-
-	
-	
